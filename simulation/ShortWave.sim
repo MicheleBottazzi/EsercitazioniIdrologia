@@ -1,0 +1,75 @@
+import static oms3.SimBuilder.instance as OMS3
+def home = oms_prj
+// start and end date of the simulation
+def startDate	=	"2007-01-01 00:00"
+def endDate		=	"2007-01-31 23:00"
+OMS3.sim {
+	resource "$oms_prj/lib"
+	model(while : "reader_data_airT.doProcess"  ) {
+		components {    
+			"reader_data_airT"            		"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"        
+			"reader_data_RH"            		"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"        
+			"reader_dem"                  		"org.jgrasstools.gears.io.rasterreader.OmsRasterReader"     
+			"reader_sky"                  		"org.jgrasstools.gears.io.rasterreader.OmsRasterReader"
+			"vreader_station"             		"org.jgrasstools.gears.io.shapefile.OmsShapefileFeatureReader"
+			"swrb"                        		"swrbPointCase.ShortwaveRadiationBalancePointCase"
+			"writer_direct"               		"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 
+			"writer_diffuse"              		"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 		
+			"writer_topATM"						"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"         
+			}  
+			parameter{   
+				// parameters reader data input air temperature
+				"reader_data_airT.file"			"${home}/output/Temperature_interpolate.csv"
+				"reader_data_airT.idfield"		"ID"  
+				"reader_data_airT.tStart"		"${startDate}"
+				"reader_data_airT.tEnd"			"${endDate}"
+				"reader_data_airT.tTimestep"	60
+				"reader_data_airT.fileNovalue"	"-9999"                        
+				
+				// parameters reader data input relative humidity
+				//"reader_data_RH.file"			"${home}/data/IS_UmiditaRelativa.csv"
+				//"reader_data_RH.idfield"		"ID"  
+				//"reader_data_RH.tStart"		"${startDate}"
+				//"reader_data_RH.tEnd"			"${endDate}"
+				//"reader_data_RH.tTimestep"	60
+				//"reader_data_RH.fileNovalue"	"-9999"                        
+				
+				"reader_dem.file"				"${home}/data/File_DEM.asc"		
+				"reader_sky.file"				"${home}/output/File_skyview.asc"
+				"vreader_station.file"			"${home}/data/File_centroidi.shp"               
+				
+				// name of the column in the shape file containing the ID of the station
+				"swrb.fStationsid"				"ID" //<---- è giusto l'id? CONTROLLATE
+				"swrb.tStartDate"				"${startDate}"   
+				"swrb.doHourly"					true   //or false if daily        
+				"swrb.pCmO3"					0.6		// parametri da letteratura
+				"swrb.pAlphag"					0.9		// parametri da letteratura
+				"swrb.pVisibility"				80		// parametri da letteratura				            
+				// writer output paramters  
+				"writer_direct.file"			"${home}/output/File_shortwave_diretta.csv" 
+				"writer_direct.tStart"			"${startDate}"
+				"writer_direct.fileNovalue"		"-9999"
+				"writer_direct.tTimestep"		60				        				        
+				// writer output paramters   
+				"writer_diffuse.file"			"${home}/output/File_shortwave_diffusa.csv" 
+				"writer_diffuse.tStart"			"${startDate}"
+				"writer_diffuse.fileNovalue"	"-9999"
+				"writer_diffuse.tTimestep"		60                
+				// writer output paramters    
+				"writer_topATM.file"			"${home}/output/File_shortwave_top_atmosfera.csv" 
+				"writer_topATM.tStart"			"${startDate}"
+				"writer_topATM.fileNovalue"		"-9999"
+				"writer_topATM.tTimestep"		60        
+				}
+				connect {                 
+					"reader_data_airT.outData"	"swrb.inTemperatureValues"
+					//"reader_data_RH.outData"	"swrb.inHumidityValues"       
+					"reader_dem.outRaster"		"swrb.inDem"    
+					"reader_sky.outRaster"		"swrb.inSkyview"          
+					"vreader_station.geodata"	"swrb.inStations"
+					"swrb.outHMdirect"			"writer_direct.inData"
+					"swrb.outHMdiffuse"			"writer_diffuse.inData"
+					"swrb.outHMtopatm"			"writer_topATM.inData"
+					}
+			}
+	}

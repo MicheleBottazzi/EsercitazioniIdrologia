@@ -19,14 +19,14 @@ model(while: "reader_distances.doProcess" ) {
    }
    parameter{ 
    	// parameter of the reader components 
-   	"reader_distances.file"			"${home}/output/File_distanze.csv"
+   	"reader_distances.file"			"${home}/output/distances.csv"
    	"reader_distances.idfield"		"ID"  
    	"reader_distances.tStart"		"${startDate}"
    	"reader_distances.tEnd"			"${endDate}"
    	"reader_distances.tTimestep"	60
    	"reader_distances.fileNovalue"	"-9999"
    	
-   	"reader_semivariance.file"		"${home}/output/File_variogramma_sperimentale.csv" 
+   	"reader_semivariance.file"		"${home}/output/EV.csv" 
    	"reader_semivariance.idfield"	"ID"  
    	"reader_semivariance.tStart"	"${startDate}"
    	"reader_semivariance.tEnd"		"${endDate}"

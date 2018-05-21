@@ -17,15 +17,14 @@ resource "$oms_prj/lib"
         "writer_semivariance"			"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter" 
    }  
    parameter{
-        "reader_data.file"				"${home}/data/OMSdf_TA_20072008_mean.csv"
+        "reader_data.file"				"${home}/data2/OMSdf_TA_20072008_mean.csv"
         "reader_data.idfield"			"val"  
         "reader_data.tStart"			"${startDate}"
         "reader_data.tEnd"				"${endDate}"
         "reader_data.tTimestep"			60
         "reader_data.fileNovalue"		"-9999"
-        "vreader_station.file"			"${home}/data/Stazioni.shp"
        
-            
+        "vreader_station.file"			"${home}/data/Stazioni.shp"                   
         "EV.fStationsid"				"id" 
         "EV.Cutoff_divide"				4
             

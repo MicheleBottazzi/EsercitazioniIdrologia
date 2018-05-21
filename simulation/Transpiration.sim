@@ -8,10 +8,12 @@ OMS3.sim {
 	resource "$oms_prj/lib"
 	model(while:"readerDataTemperature.doProcess") {
 		components {
+			"readerDem"                  				"org.jgrasstools.gears.io.rasterreader.OmsRasterReader"     
 			"readerDataTemperature"           			"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
 			"readerDataWind"             				"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
 			"readerDataHumidity"          				"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
-			"readerDataShortWave"         				"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+			"readerDataShortWaveDirect"         		"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
+			"readerDataShortWaveDiffuse"         		"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
 			"readerDataLongWave"         				"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
 			"readerDataPressure"          				"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"
 			"readerDataLeafAreaIndex"          			"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorReader"	
@@ -21,78 +23,89 @@ OMS3.sim {
 			"writerLeafTemperature"						"org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"      
 			}
 			parameter{  			
-				"readerDataTemperature.file"          	"${home}/output/File_temperatura.csv"
+				"readerDataTemperature.file"          	"${home}/output/Temperature_interpolate.csv"
 				"readerDataTemperature.idfield"       	"ID"  
 				"readerDataTemperature.tStart"        	"${startDate}"
 				"readerDataTemperature.tEnd"			"${endDate}"
 				"readerDataTemperature.tTimestep"		60 //or 60 hourly
 				"readerDataTemperature.fileNovalue"   	"-9999.0"				        		
 				
-				"Transpiration.doHourly"				true                   
+				"Transpiration.doHourly"				true    
+				"Transpiration.tStartDate"				"${startDate}"   
+				"readerDem.file"						"${home}/data/Bacino1/DemBacino1.asc"		               
 				
-				"readerDataWind.file"         			"${home}/output/File_vento.csv"
+				"readerDataWind.file"         			"${home}/output/FakeSeries.csv"
 				"readerDataWind.idfield"				"ID"  
 				"readerDataWind.tStart"       			"${startDate}"
 				"readerDataWind.tEnd"         			"${endDate}"
 				"readerDataWind.tTimestep"    			60
 				"readerDataWind.fileNovalue"  			"-9999.0"        
 				
-				"readerDataHumidity.file"         		"${home}/output/File_umidità.csv"
+				"readerDataHumidity.file"         		"${home}/output/FakeSeries.csv"
 				"readerDataHumidity.idfield"      		"ID"  
 				"readerDataHumidity.tStart"       		"${startDate}"
 				"readerDataHumidity.tEnd"         		"${endDate}"
 				"readerDataHumidity.tTimestep"    		60
 				"readerDataHumidity.fileNovalue"  		"-9999.0"	
 				
-				"readerDataShortWave.file"        		"${home}/output/File_shortwave.csv" 
-				"readerDataShortWave.idfield"     		"ID"
-				"readerDataShortWave.tStart"      		"${startDate}"
-				"readerDataShortWave.tEnd"        		"${endDate}"
-				"readerDataShortWave.tTimestep"   		60 
-				"readerDataShortWave.fileNovalue" 		"-9999.0"				
+				"readerDataShortWaveDirect.file"		"${home}/output/File_componente_diretta.csv" 
+				"readerDataShortWaveDirect.idfield"		"ID"
+				"readerDataShortWaveDirect.tStart"		"${startDate}"
+				"readerDataShortWaveDirect.tEnd"		"${endDate}"
+				"readerDataShortWaveDirect.tTimestep"	60 
+				"readerDataShortWaveDirect.fileNovalue"	"-9999.0"				
 				
-				"readerDataLongWave.file"        		"${home}/output/File_longwave.csv" 
+				"readerDataShortWaveDiffuse.file"		"${home}/output/File_componente_diffusa.csv" 
+				"readerDataShortWaveDiffuse.idfield"	"ID"
+				"readerDataShortWaveDiffuse.tStart"		"${startDate}"
+				"readerDataShortWaveDiffuse.tEnd"		"${endDate}"
+				"readerDataShortWaveDiffuse.tTimestep"	60 
+				"readerDataShortWaveDiffuse.fileNovalue""-9999.0"				
+				
+				"readerDataLongWave.file"        		"${home}/output/Componente_downwelling.csv" 
 				"readerDataLongWave.idfield"     		"ID"
 				"readerDataLongWave.tStart"      		"${startDate}"
 				"readerDataLongWave.tEnd"        		"${endDate}"
 				"readerDataLongWave.tTimestep"   		60  
 				"readerDataLongWave.fileNovalue" 		"-9999.0"
 				
-				"readerDataPressure.file"         		"${home}/output/File_pressure.csv"
+				"readerDataPressure.file"         		"${home}/output/FakeSeries.csv"
 				"readerDataPressure.idfield"      		"ID"  
 				"readerDataPressure.tStart"       		"${startDate}"
 				"readerDataPressure.tEnd"         		"${endDate}"
 				"readerDataPressure.tTimestep"    		60
 				"readerDataPressure.fileNovalue"  		"-9999.0"       
 				
-				"readerDataLeafAreaIndex.file"         	"${home}/data/File_leaf_area_index.csv"
+				"readerDataLeafAreaIndex.file"         	"${home}/data/Bacino1/Lai1.csv"
 				"readerDataLeafAreaIndex.idfield"      	"val"  
 				"readerDataLeafAreaIndex.tStart"       	"${startDate}"
 				"readerDataLeafAreaIndex.tEnd"         	"${endDate}"
 				"readerDataLeafAreaIndex.tTimestep"    	60
 				"readerDataLeafAreaIndex.fileNovalue"  	"-9999.0"        				
 				
-				"readerCentroids.file"					"${home}/data/File_centroidi.shp"    
-				"Transpiration.fStationsid"            	"ID"
-				"Transpiration.fPointZ"			 		"quota"
+				"readerCentroids.file"					"${home}/data/Bacino1/Centroidi1.shp"    
+				"Transpiration.idCentroids"            	"ID"
+				"Transpiration.centroidElevation"		"quota"
 				
-				"writerTranspiration.file"        		"${home}/output/File_traspirazione.csv" 
+				"writerTranspiration.file"        		"${home}/output/ET_So_1.csv" 
 				"writerTranspiration.tStart"       		"${startDate}"
 				"writerTranspiration.tTimestep"   		60
 							        
-				"writerLeafTemperature.file"			"${home}/output/File_temperatura_foglie.csv" 
+				"writerLeafTemperature.file"			"${home}/output/LT_So_1.csv" 
 				"writerLeafTemperature.tStart"			"${startDate}"
 				"writerLeafTemperature.tTimestep"		60        
 				}
 				connect {
 					"readerDataTemperature.outData"		"Transpiration.inAirTemperature"
+					"readerDem.outRaster"				"Transpiration.inDem"    
 					"readerDataWind.outData"  			"Transpiration.inWindVelocity"
 					"readerDataHumidity.outData"  		"Transpiration.inRelativeHumidity"
-					"readerDataShortWave.outData" 		"Transpiration.inShortWaveRadiation"
+					"readerDataShortWaveDirect.outData" "Transpiration.inShortWaveRadiationDirect"
+					"readerDataShortWaveDiffuse.outData""Transpiration.inShortWaveRadiationDiffuse"
 					"readerDataLongWave.outData" 		"Transpiration.inLongWaveRadiation"
 					"readerDataPressure.outData"		"Transpiration.inAtmosphericPressure"
 					"readerDataLeafAreaIndex.outData"	"Transpiration.inLeafAreaIndex"	
-					"readerCentroids.geodata"			"Transpiration.inStations"				        	
+					"readerCentroids.geodata"			"Transpiration.inCentroids"				        	
 					"Transpiration.outTranspiration"	"writerTranspiration.inData"
 					"Transpiration.outLeafTemperature"	"writerLeafTemperature.inData"
 					}

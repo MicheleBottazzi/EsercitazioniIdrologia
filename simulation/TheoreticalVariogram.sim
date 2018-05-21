@@ -13,14 +13,14 @@ OMS3.sim {
 			"writer_semivariance"         "org.jgrasstools.gears.io.timedependent.OmsTimeSeriesIteratorWriter"                      
 			}  
 			parameter{   
-				"reader_distances.file"             "${home}/output/File_distanza.csv" 
+				"reader_distances.file"             "${home}/output/distances.csv" 
 				"reader_distances.idfield"          "ID"  
 				"reader_distances.tStart"           "${startDate}"
 				"reader_distances.tEnd"             "${endDate}"
 				"reader_distances.tTimestep"          60
 				"reader_distances.fileNovalue"      "-9999"        
 				
-				"reader_variogram.file"             "${home}/output/File_variogramma_sperimentale.csv" 
+				"reader_variogram.file"             "${home}/output/EV.csv" 
 				"reader_variogram.idfield"          "ID"  
 				"reader_variogram.tStart"           "${startDate}"
 				"reader_variogram.tEnd"             "${endDate}"
@@ -32,7 +32,7 @@ OMS3.sim {
 				"TV.nugget"     7.367035750374534E-14
 				"TV.sill"      	24.740076671669062         
 				
-				"writer_semivariance.file"                 "${home}/output/File_variogramma_teorico.csv" 
+				"writer_semivariance.file"                 "${home}/output/NOME_output.csv" 
 				"writer_semivariance.tStart"               "${startDate}"
 				"writer_semivariance.tTimestep"            60       
 				}

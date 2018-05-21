@@ -34,9 +34,9 @@ OMS3.sim {
 				//"reader_data_RH.tTimestep"	60
 				//"reader_data_RH.fileNovalue"	"-9999"                        
 				
-				"reader_dem.file"				"${home}/data/File_DEM.asc"		
-				"reader_sky.file"				"${home}/output/File_skyview.asc"
-				"vreader_station.file"			"${home}/data/File_centroidi.shp"               
+				"reader_dem.file"				"${home}/data/Bacino1/DemBacino1.asc"		
+				"reader_sky.file"				"${home}/output/skyview.asc"
+				"vreader_station.file"			"${home}/data/Bacino1/Centroidi1.shp"               
 				
 				// name of the column in the shape file containing the ID of the station
 				"swrb.fStationsid"				"ID" //<---- è giusto l'id? CONTROLLATE
@@ -46,17 +46,17 @@ OMS3.sim {
 				"swrb.pAlphag"					0.9		// parametri da letteratura
 				"swrb.pVisibility"				80		// parametri da letteratura				            
 				// writer output paramters  
-				"writer_direct.file"			"${home}/output/File_shortwave_diretta.csv" 
+				"writer_direct.file"			"${home}/output/File_componente_diretta.csv" 
 				"writer_direct.tStart"			"${startDate}"
 				"writer_direct.fileNovalue"		"-9999"
 				"writer_direct.tTimestep"		60				        				        
 				// writer output paramters   
-				"writer_diffuse.file"			"${home}/output/File_shortwave_diffusa.csv" 
+				"writer_diffuse.file"			"${home}/output/File_componente_diffusa.csv" 
 				"writer_diffuse.tStart"			"${startDate}"
 				"writer_diffuse.fileNovalue"	"-9999"
 				"writer_diffuse.tTimestep"		60                
 				// writer output paramters    
-				"writer_topATM.file"			"${home}/output/File_shortwave_top_atmosfera.csv" 
+				"writer_topATM.file"			"${home}/output/File_componente_top_atmosfera.csv" 
 				"writer_topATM.tStart"			"${startDate}"
 				"writer_topATM.fileNovalue"		"-9999"
 				"writer_topATM.tTimestep"		60        

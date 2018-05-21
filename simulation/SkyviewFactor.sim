@@ -9,8 +9,8 @@ OMS3.sim {
 			"writer_skyview"         		"org.jgrasstools.gears.io.rasterwriter.OmsRasterWriter"			                     
 			}  
 			parameter{   
-				"reader_pit.file"           "${home}/data/File_DEM.asc"				         
-				"writer_skyview.file"		"${home}/output/File_skyview.asc"        
+				"reader_pit.file"           "${home}/data/Bacino1/DemBacino1.asc"				         
+				"writer_skyview.file"		"${home}/output/skyview.asc"        
 				}
 				connect {        
 					"reader_pit.outRaster"	"skyview.inElev"

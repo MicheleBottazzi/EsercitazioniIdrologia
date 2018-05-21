@@ -17,18 +17,18 @@ OMS3.sim {
 			}  
 			parameter{   
 				// parameter of the reader components 
-				"reader_data.file"               	"${home}/data/File_temperature.csv"
+				"reader_data.file"               	"${home}/data/OMSdf_TA_20072008.csv"
 				"reader_data.idfield"          		"val"  
 				"reader_data.tStart"           		"${startDate}"
 				"reader_data.tEnd"             		"${endDate}"
 				"reader_data.tTimestep"          	60
 				"reader_data.fileNovalue"      		"-9999"
 				
-				"vreader_station.file"				"${home}/data/File_stazioni.shp"   
+				"vreader_station.file"				"${home}/data/Stazioni.shp"   
 				"kriging.fStationsid"            	"id"
 				"kriging.fStationsZ"			 	"quota"
 				
-				"vreader_interpolation.file"		"${home}/data/File_centroidi.shp"         
+				"vreader_interpolation.file"		"${home}/data/Bacino1/Centroidi1.shp"         
 				"kriging.fInterpolateid"			"ID"
 				"kriging.fPointZ"					"quota"
 				//"kriging.inNumCloserStations"     	10
@@ -40,7 +40,7 @@ OMS3.sim {
 				"kriging.sill"						214.02910792904407
 				
 				// parameter of the writing component   
-				"writer_interpolated.file"			"${home}/output/File_temperature_interpolate.csv" 
+				"writer_interpolated.file"			"${home}/output/Temperature_interpolate.csv" 
 				"writer_interpolated.tStart"		"${startDate}"
 				"writer_interpolated.tTimestep"		60        
 				}

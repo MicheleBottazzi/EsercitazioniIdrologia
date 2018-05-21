@@ -1,8 +1,8 @@
 import static oms3.SimBuilder.instance as OMS3
 def home = oms_prj
 // start and end date of the simulation
-def startDate	=	"2007-01-01 00:00"
-def endDate		=	"2008-12-31 22:00"
+def startDate	=	"2007-01-01 12:00"
+def endDate		=	"2007-01-01 12:00"
 OMS3.sim {
 	resource "$oms_prj/lib"
 	model( ) {
@@ -17,8 +17,8 @@ OMS3.sim {
 			"writerUpwelling"             				"org.jgrasstools.gears.io.rasterwriter.OmsRasterWriter"    	
 			}
 			parameter{
-				"readerAirTemperature.file"				"${home}/output/File_temperature_interpolate.asc"
-				"readerSkyViewFactor.file"				"${home}/output/File_skyview.asc"				   		
+				"readerAirTemperature.file"				"${home}/output/Mappa_Temperature_20070101_1200.asc"
+				"readerSkyViewFactor.file"				"${home}/output/skyview.asc"				   		
 				//"lwrb.tStartDate"						"${startDate}"   
 				//"lwrb.doHourly"						true   //or false if daily    		        
 				"lwrb.X"								0.7						
@@ -27,8 +27,8 @@ OMS3.sim {
 				"lwrb.epsilonS"        					0.98
 				"lwrb.A_Cloud"         					0.4				
 				"lwrb.B_Cloud"							0.8	
-				"writerUpwelling.file"					"${home}/output/File_longwave_upwelling_raster.asc"      
-				"writerDownwelling.file"				"${home}/output/File_longwave_downwelling_raster.asc"      
+				"writerUpwelling.file"					"${home}/output/LwrbUpWellingRaster.asc"      
+				"writerDownwelling.file"				"${home}/output/LwrbDownWellingRaster.asc"      
 				}
 				connect {     
 					"readerAirTemperature.outRaster"	"lwrb.inAirTempGrid"      

@@ -16,12 +16,12 @@ OMS3.sim {
 			"writerNetRadiation"					"org.jgrasstools.gears.io.rasterwriter.OmsRasterWriter"   
 			}
 			parameter{   
-				"readerShortWave.file"				"${home}/output/File_shortwave_raster.asc" 
-				"readerUpwelling.file"				"${home}/output/File_longwave_upwelling_raster.asc" 
-				"readerDownwelling.file"			"${home}/output/File_longwave_downwelling_raster.asc"        
+				"readerShortWave.file"				"${home}/output/File_ShortWave_Raster.asc" 
+				"readerUpwelling.file"				"${home}/output/File_LongWave_UpWelling_Raster.asc" 
+				"readerDownwelling.file"			"${home}/output/File_LongWave_DownWelling_Raster.asc"        
 				
 				"netRadiation.alfa"            		0.6
-				"writerNetRadiation.file"           "${home}/output/Raster_radiazione_netta.asc" 
+				"writerNetRadiation.file"           "${home}/output/Raster_Radiazione_Netta.asc" 
 				}
 				connect {
 					"readerShortWave.outRaster"		"netRadiation.inShortwaveGrid"

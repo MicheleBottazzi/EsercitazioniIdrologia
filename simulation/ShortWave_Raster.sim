@@ -1,8 +1,8 @@
 import static oms3.SimBuilder.instance as OMS3
 def home = oms_prj
 // start and end date of the simulation
-def startDate	=	"2007-01-01 00:00"
-def endDate		=	"2008-12-31 22:00"
+def startDate	=	"2007-01-01 12:00"
+def endDate		=	"2007-01-01 12:00"
 OMS3.sim {
 	resource "$oms_prj/lib"	
 	model(while : "reader_data_airT.doProcess"  ) {
@@ -20,13 +20,16 @@ OMS3.sim {
 				"swrb.tStartDate"					"${startDate}"   
 				"swrb.doHourly"						true   //or false if daily   
 				// parameters reader data input air temperature             
-				"reader_dem.file"					"${home}/output/File_dem.asc"
-				"reader_data_airT.file"				"${home}/output/Mappa_temperature_interpolate.asc"
-				"reader_sky.file"					"${home}/output/Nome_file_skyview_factor.asc"
+				"reader_dem.file"					"${home}/data/Bacino1/DemBacino1.asc"
+				"reader_data_airT.file"				"${home}/output/Mappa_Temperature_20070101_1200.asc"
+				"reader_sky.file"					"${home}/output/skyview.asc"
 				//"vreader_station.file"			"${home}/data/Isarco/All_Stazioni_meteo.shp"				       
 				"swrb.pCmO3"                        0.6		// parametri da letteratura
 				"swrb.pAlphag"						0.9		// parametri da letteratura
-				"swrb.pVisibility"					80		// parametri da letteratura        
+				"swrb.pVisibility"					80		// parametri da letteratura       
+				"writer_direct.file"						"${home}/output/SWRB_rasterdir.asc" 					
+				"writer_diffuse.file"              		"${home}/output/SWRB_rasterdif.asc" 
+				"writer_topATM.file"						"${home}/output/SWRB_rastertop.asc" 
 				}
 				connect {
 					"reader_data_airT.outRaster"  	"swrb.inTempGrid"

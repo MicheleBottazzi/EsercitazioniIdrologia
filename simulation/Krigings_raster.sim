@@ -1,8 +1,8 @@
 import static oms3.SimBuilder.instance as OMS3
 def home = oms_prj
 // start and end date of the simulation
-def startDate	=	"2007-01-01 00:00"
-def endDate		=	"2008-12-31 22:00"
+def startDate	=	"2007-07-01 15:00"
+def endDate		=	"2007-07-01 15:00"
 OMS3.sim {
 	resource "$oms_prj/lib"
 	model(while: "reader_data.doProcess" ) {
@@ -15,26 +15,26 @@ OMS3.sim {
 			"writer_interpolated"						"org.jgrasstools.gears.io.rasterwriter.OmsRasterWriter"       
 			}  
 			parameter{				   
-				"reader_data.file"						"${home}/data/File_delle_temperature.csv"
-				"reader_data.idfield"					"ID"  
+				"reader_data.file"						"${home}/data/OMSdf_TA_20072008.csv"
+				"reader_data.idfield"					"val"  
 				"reader_data.tStart"					"${startDate}"
 				"reader_data.tEnd"						"${endDate}"
 				"reader_data.tTimestep"					60
 				"reader_data.fileNovalue"				"-9999"			                        
 				
-				"vreader_station.file"					"${home}/data/Shape_delle_stazioni.shp"    
-				"reader_dem.file"						"${home}/data/DEM.asc"     
+				"vreader_station.file"					"${home}/data/Stazioni.shp"   
+				"reader_dem.file"						"${home}/data/Bacino1/DemBacino1.asc"     
 				"kriging.fStationsid"					"id"
 				"kriging.fStationsZ"					"quota"
 				
 				//LOCAL CASE
 				//"kriging.inNumCloserStations"			5		
 				//DETRENDED CASE
-				"kriging.doDetrended"					false
+				"kriging.doDetrended"					true
 				"kriging.pSemivariogramType"			"linear"				
-				"kriging.range"							527.7940899802488
-				"kriging.nugget"						6.0056437476314946
-				"kriging.sill"							1.1069446571949833                
+				"kriging.range"							79999.54698001844
+				"kriging.nugget"						3.7375493089593887
+				"kriging.sill"							214.02910792904407   
 				
 				"pathGenerator.pathToOutData"			"${home}/output/Mappa_Temperature.asc"                
 				}

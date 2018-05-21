@@ -43,8 +43,8 @@ OMS3.sim {
 				//"reader_data_CI.tTimestep"		60
 				//"reader_data_CI.fileNovalue"		"-9999"				                
 				
-				"reader_sky.file"					"${home}/output/File_skyview.asc"
-				"vreader_station.file"				"${home}/data/File_centroidi.shp"         
+				"reader_sky.file"					"${home}/output/skyview.asc"
+				"vreader_station.file"				"${home}/data/Bacino1/Centroidi1.shp"         
 				// name of the column in the shape file containing the ID of the station
 				"lwrb.fStationsid"					"ID" 
 				// parameters of the lwrb  component
@@ -55,12 +55,12 @@ OMS3.sim {
 				"lwrb.A_Cloud"         				0
 				"lwrb.B_Cloud"         				1
 				// writer output paramters     
-				"writer_down.file"					"${home}/output/File_componente_downwelling.csv" 
+				"writer_down.file"					"${home}/output/Componente_downwelling.csv" 
 				"writer_down.tStart"				"${startDate}"
 				"writer_down.fileNovalue"			"-9999"
 				"writer_down.tTimestep"				60				        
 				
-				"writer_up.file"					"${home}/output/File_componente_upwelling.csv" 
+				"writer_up.file"					"${home}/output/Componente_upwelling.csv" 
 				"writer_up.tStart"					"${startDate}"
 				"writer_up.fileNovalue"				"-9999"
 				"writer_up.tTimestep"				60        
